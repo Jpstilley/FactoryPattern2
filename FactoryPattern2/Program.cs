@@ -6,17 +6,14 @@ namespace FactoryPattern2
     {
         static void Main(string[] args)
         {
-            bool tryAgain = true;
-            while (tryAgain)
+            bool createDatabase = true;
+            while (createDatabase)
             {
-                Console.WriteLine("What kind of database would you like to use?");
-                Console.WriteLine($"List\nSQL\nMogo");
-                var userInput = Console.ReadLine().ToLower();
-                var database = DataAccessFactory.GetDataAccessType(userInput);
+                var database = DataAccessFactory.GetDataAccessType();
                 database.SaveData();
                 database.LoadData();
 
-                tryAgain = DataAccessFactory.KeepCreating();
+                createDatabase = DataAccessFactory.KeepCreating();
             }
         }
     }

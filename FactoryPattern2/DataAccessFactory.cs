@@ -3,8 +3,11 @@ namespace FactoryPattern2
 {
     public static class DataAccessFactory
     {
-        public static IDataAccess GetDataAccessType(string databaseType)
+        public static IDataAccess GetDataAccessType()
         {
+            Console.WriteLine("What kind of database would you like to use?");
+            Console.WriteLine($"List\nSQL\nMongo");
+            var databaseType = Console.ReadLine().ToLower();
             switch (databaseType)
             {
                 case "list":
@@ -15,9 +18,7 @@ namespace FactoryPattern2
                     return new MongoDataAccess();
                 default:
                     Console.WriteLine($"\nThis is not a valid response.\n Please try again.\n");
-                    Console.WriteLine("What kind of database would you like to use?");
-                    databaseType = Console.ReadLine().ToLower();
-                    return GetDataAccessType(databaseType);     
+                    return GetDataAccessType();     
             }
         }
 
